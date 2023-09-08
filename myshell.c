@@ -3,6 +3,9 @@
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
 
+void execute_command(char *command);
+void shell(void);
+
 
 /**
  * shell - excutes command from user
@@ -21,7 +24,7 @@ void shell(void)
 		/* Read command from user */
 		if (fgets(command, sizeof(command), stdin) == NULL)
 		{
-			break
+			break;
 		}
 
 		/* Remove newline character */
