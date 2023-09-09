@@ -43,6 +43,10 @@ void execute_command(char *command)
 {
 	pid_t pid = fork();
 	int status;
+	char **args = malloc(2 * sizeof(char *));
+
+	args[0] = command;
+	args[1] = NULL;
 
 	if (pid == -1)
 	{
@@ -53,7 +57,12 @@ void execute_command(char *command)
 	else if (pid == 0)
 	{
 		/* Child process*/
-		execlp(command, command, NULL);
+		if (args == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		execve(command, args, environ);
 
 		/* Execution failed, print error message */
 		fprintf(stderr, "Command '%s' not found\n", command);

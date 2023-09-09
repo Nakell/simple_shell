@@ -1,6 +1,7 @@
 #ifndef MYSHELL_H
 #define MYSHELL_H
 
+extern char **environ;
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
