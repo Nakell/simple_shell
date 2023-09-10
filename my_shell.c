@@ -29,8 +29,7 @@ void shell(void)
 
 		/* Remove newline character */
 		command[strcspn(command, "\n")] = '\0';
-
-		/* Execute command */
+		
 		execute_command(command);
 	}
 }
@@ -74,14 +73,12 @@ void execute_command(char *command)
 		waitpid(pid, &status, 0);
 	}
 }
-
 /**
  * main - main program
- *
- *Return: return 0
+ * Return: 0
  */
 int main(void)
 {
 	shell();
-	return (0);
+	return(0);
 }
