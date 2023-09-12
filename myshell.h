@@ -19,4 +19,7 @@ int _putchar(char c);
 char** parse_arguments(char *input_command);
 int contains_args(const char *command_line);
 void execute_command_args(char *command_line);
+
+char* construct_command_path(const char* command, const char* directory);
+char* find_command_in_path(const char* command, const char* path);
 #endif
