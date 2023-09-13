@@ -77,6 +77,7 @@ void execute_command(char *command)
 		/* Execution failed, print error message */
 		fprintf(stderr, "Command '%s' not found\n", command);
 		exit(EXIT_FAILURE);
+		free(args);
 	}
 	else
 	{
