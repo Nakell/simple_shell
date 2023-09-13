@@ -5,7 +5,7 @@
 
 void execute_command(char *command);
 void shell(void);
-
+char *find_command_in_path(const char *command, const char *path);
 
 /**
  * shell - excutes command from user
@@ -14,6 +14,13 @@ void shell(void);
 void shell(void)
 {
 	char command[MAX_COMMAND_LENGTH];
+	char *original_path = strdup(getenv("PATH"));
+
+	if (original_path == NULL)
+	{
+		perror("strdup");
+		exit(EXIT_FAILURE);
+	}
 
 	while (1)
 	{
@@ -29,7 +36,11 @@ void shell(void)
 
 		/* Remove newline character */
 		command[strcspn(command, "\n")] = '\0';
-		
+
+		/* sets path for command */
+		find_command_in_path(path, command);
+
+		/*executes the command */
 		execute_command(command);
 	}
 }
@@ -80,5 +91,5 @@ void execute_command(char *command)
 int main(void)
 {
 	shell();
-	return(0);
+	return (0);
 }
