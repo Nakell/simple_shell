@@ -14,13 +14,7 @@ char *find_command_in_path(const char *command, const char *path);
 void shell(void)
 {
 	char command[MAX_COMMAND_LENGTH];
-	char *original_path = strdup(getenv("PATH"));
-
-	if (original_path == NULL)
-	{
-		perror("strdup");
-		exit(EXIT_FAILURE);
-	}
+	char *command_path;
 
 	while (1)
 	{
@@ -38,10 +32,17 @@ void shell(void)
 		command[strcspn(command, "\n")] = '\0';
 
 		/* sets path for command */
-		find_command_in_path(path, command);
+		command_path = find_command_in_path(command, getenv("PATH"));
+		if (command_path != NULL)
+		{
+			/*executes the command */
+			execute_command(command_path);
+		}
 
-		/*executes the command */
-		execute_command(command);
+			else
+			{
+				printf("Command not found: %s\n", command);
+			}
 	}
 }
 
@@ -53,10 +54,10 @@ void execute_command(char *command)
 {
 	pid_t pid = fork();
 	int status;
-	char **args = malloc(2 * sizeof(char *));
+	char *args[MAX_ARGUMENTS + 1];
+	char *token;
 
-	args[0] = command;
-	args[1] = NULL;
+	int args_count = 0;
 
 	if (pid == -1)
 	{
@@ -67,17 +68,21 @@ void execute_command(char *command)
 	else if (pid == 0)
 	{
 		/* Child process*/
-		if (args == NULL)
+		/* tokenize */
+		token = strtok(command, " ");
+		while (token != NULL && args_count < MAX_ARGUMENTS)
 		{
-			perror("malloc");
-			exit(EXIT_FAILURE);
+			args[args_count] = token;
+			args_count++;
+			token = strtok(NULL, " ");
 		}
-		execve(command, args, environ);
+		args[args_count] = NULL;
+
+		execvp(args[0], args);
 
 		/* Execution failed, print error message */
 		fprintf(stderr, "Command '%s' not found\n", command);
 		exit(EXIT_FAILURE);
-		free(args);
 	}
 	else
 	{
