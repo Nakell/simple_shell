@@ -5,7 +5,7 @@
  * @input_command: The command string to parse
  * Return: An arry of strings containing the parsed argumments
  */
-char** parse_arguments(char *input_command)
+char **parse_arguments(char *input_command)
 {
 	char **args = NULL;
 	int args_count = 0;
@@ -24,5 +24,5 @@ char** parse_arguments(char *input_command)
 		token = strtok(NULL, " ");
 	}
 	args[args_count] = NULL;
-	return args;
+	return (args);
 }
