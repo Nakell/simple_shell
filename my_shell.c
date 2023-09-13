@@ -37,8 +37,8 @@ void shell(void)
 		{
 			/*executes the command */
 			execute_command(command_path);
+			free(command_path);
 		}
-
 			else
 			{
 				printf("Command not found: %s\n", command);
