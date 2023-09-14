@@ -22,4 +22,10 @@ void execute_command_args(char *command_line);
 
 char *construct_command_path(const char *command, const char *directory);
 char *find_command_in_path(const char *command, const char *path);
+
+void free_token_array(char **tokens);
+char **tokenize_string(char *input_string, ssize_t input_length);
+int _strlen(char *strn);
+void _strcopy(char *dest, char *sourc);
+char *_strdup(char *src);
 #endif
