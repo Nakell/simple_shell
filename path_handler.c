@@ -33,7 +33,16 @@ char *find_command_in_path(const char *command, const char *path)
 {
 	char *path_copy = strdup(path);
 	char *directory = strtok(path_copy, ":");
-	char *command_path = construct_command_path(command, directory);
+	char *command_path  = NULL;
+
+	if (command[0] == '/')
+	{
+		if (access(command, X_OK) == 0)
+		{
+			return (strdup(command));
+		}
+		return (NULL);
+	}
 
 	if (path_copy == NULL)
 	{
@@ -43,6 +52,7 @@ char *find_command_in_path(const char *command, const char *path)
 
 	while (directory != NULL)
 	{
+		command_path = construct_command_path(command, directory);
 		if (access(command_path, X_OK) == 0)
 		{
 			free(path_copy);
