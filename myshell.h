@@ -28,4 +28,8 @@ char **tokenize_string(char *input_string, ssize_t input_length);
 int _strlen(char *strn);
 void _strcopy(char *dest, char *sourc);
 char *_strdup(char *src);
+int _strcomp(const char *str1, const char *str2);
+void environ_builtin(void);
+void exit_shell(char **command_token, char *user_input);
+void deallocate_memory(char **memory_buffer);
 #endif
