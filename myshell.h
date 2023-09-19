@@ -13,7 +13,7 @@ extern char **environ;
 #include <stddef.h>
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
-
+#define NUM_BUILTIN_COMMANDS  3
 
 int _putchar(char c);
 char **parse_arguments(char *input_command);
@@ -32,4 +32,5 @@ int _strcomp(const char *str1, const char *str2);
 void environ_builtin(void);
 void exit_shell(char **command_token, char *user_input);
 void deallocate_memory(char **memory_buffer);
+int execute_built(char **command_args, char *user_input);
 #endif
