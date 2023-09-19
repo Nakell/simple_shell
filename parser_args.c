@@ -1,28 +1,22 @@
 #include "myshell.h"
 
 /**
- * parse_arguments - tokenize a command string into arguments
- * @input_command: The command string to parse
- * Return: An arry of strings containing the parsed argumments
+ * parse_arg - Parses the command and tokenizes it into arguments.
+ * @command: The command to be parsed.
+ * @args: The array to store the arguments.
  */
-char **parse_arguments(char *input_command)
+void parse_arg(char *command, char **args)
 {
-	char **args = NULL;
+	char *token;
 	int args_count = 0;
-	char *token = strtok(input_command, " ");
 
-	while (token != NULL)
+	token = strtok(command, " ");
+	while (token != NULL && args_count < MAX_ARGUMENTS)
 	{
-		args = realloc(args, (args_count + 2) * sizeof(char *));
-		if (args == NULL)
-		{
-			perror("realloc");
-			exit(EXIT_FAILURE);
-		}
 		args[args_count] = token;
 		args_count++;
 		token = strtok(NULL, " ");
 	}
+
 	args[args_count] = NULL;
-	return (args);
 }
