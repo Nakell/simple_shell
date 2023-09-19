@@ -31,6 +31,7 @@ void shell(void)
 		/* Remove newline character */
 		command[strcspn(command, "\n")] = '\0';
 
+
 		/* sets path for command */
 		command_path = find_command_in_path(command, getenv("PATH"));
 		if (command_path != NULL)
@@ -55,9 +56,6 @@ void execute_command(char *command)
 	pid_t pid = fork();
 	int status;
 	char *args[MAX_ARGUMENTS + 1];
-	char *token;
-
-	int args_count = 0;
 
 	if (pid == -1)
 	{
@@ -68,15 +66,7 @@ void execute_command(char *command)
 	else if (pid == 0)
 	{
 		/* Child process*/
-		/* tokenize */
-		token = strtok(command, " ");
-		while (token != NULL && args_count < MAX_ARGUMENTS)
-		{
-			args[args_count] = token;
-			args_count++;
-			token = strtok(NULL, " ");
-		}
-		args[args_count] = NULL;
+		parse_arg(command, args);
 
 		execvp(args[0], args);
 
