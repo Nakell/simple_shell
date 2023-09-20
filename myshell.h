@@ -17,7 +17,6 @@ extern char **environ;
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
 #define NUM_BUILTIN_COMMANDS  3
-#define BUFFER_SIZE 1024
 
 int _putchar(char c);
 void execute_command(char *command);
