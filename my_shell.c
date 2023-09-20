@@ -10,9 +10,11 @@ void shell(void);
  */
 void shell(void)
 {
-	char command[MAX_COMMAND_LENGTH];
+	char *command = NULL;
 	char *command_path;
 	size_t command_size = 0;
+	ssize_t read_status;
+
 
 
 	while (1)
@@ -21,7 +23,8 @@ void shell(void)
 		printf("$ ");
 
 		/* Read command from user */
-		if (getline(&command, &command_size, stdin) == NULL)
+		read_status = getline(&command, &command_size, stdin);
+		if (read_status == -1)
 		{
 			break;
 		}
