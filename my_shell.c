@@ -1,11 +1,8 @@
 #include "myshell.h"
 
-#define MAX_COMMAND_LENGTH 100
-#define MAX_ARGUMENTS 10
 
 void execute_command(char *command);
 void shell(void);
-char *find_command_in_path(const char *command, const char *path);
 
 /**
  * shell - excutes command from user

@@ -24,11 +24,10 @@ void shell(void);
 char *find_command_in_path(const char *command, const char *path);
 char *construct_command_path(const char *command, const char *directory);
 void parse_arg(char *command, char **args);
+int execute_built(char **command_args, char *user_input);
 
 
-int contains_args(const char *command_line);
-char **parse_arguments(char *input_command);
-void free_token_array(char **tokens);
+
 char **tokenize_string(char *input_string, ssize_t input_length);
 int _strlen(char *strn);
 void _strcopy(char *dest, char *sourc);
@@ -36,6 +35,4 @@ char *_strdup(char *src);
 int _strcomp(const char *str1, const char *str2);
 void environ_builtin(void);
 void exit_shell(char **command_token, char *user_input);
-void deallocate_memory(char **memory_buffer);
-int execute_built(char **command_args, char *user_input);
 #endif
