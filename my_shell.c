@@ -55,7 +55,7 @@ void execute_command(char *command)
 {
 	pid_t pid = fork();
 	int status;
-	char *args[MAX_ARGUMENTS + 1];
+	 char *args[MAX_ARGUMENTS + 1];
 
 	if (pid == -1)
 	{
@@ -67,8 +67,8 @@ void execute_command(char *command)
 	{
 		/* Child process*/
 		parse_arg(command, args);
-
 		execvp(args[0], args);
+
 
 		/* Execution failed, print error message */
 		fprintf(stderr, "Command '%s' not found\n", command);
