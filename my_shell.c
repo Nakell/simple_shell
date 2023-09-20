@@ -1,6 +1,5 @@
 #include "myshell.h"
 
-
 void execute_command(char *command, char **args);
 void shell(void);
 
@@ -25,9 +24,10 @@ void shell(void)
 
 		/* Read command from user */
 		read = getline(&command, &len, stdin);
-		if (read == -1)
+		if (read  == -1)
 		{
 			perror("getline");
+			free(command);
 			exit(EXIT_FAILURE);
 		}
 
@@ -40,9 +40,8 @@ void shell(void)
 
 		parse_arg(command, args);
 
-
 		/* sets path for command */
-		command_path = find_command_in_path(command, getenv("PATH"));
+		command_path = find_command_in_path(args[0], getenv("PATH"));
 		if (command_path != NULL)
 		{
 			/*executes the command */
@@ -78,7 +77,6 @@ void execute_command(char *command, char **args)
 	{
 		/* Child process*/
 		execve(command, args, environ);
-
 
 		/* Execution failed, print error message */
 		fprintf(stderr, "Command '%s' not found\n", args[0]);

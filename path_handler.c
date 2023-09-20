@@ -39,14 +39,14 @@ char *find_command_in_path(const char *command, const char *path)
 	{
 		if (access(command, X_OK) == 0)
 		{
-			return (strdup(command));
+			return (_strdup(command));
 		}
 		return (NULL);
 	}
 
 	if (path_copy == NULL)
 	{
-		perror("strdup");
+		perror("_strdup");
 		exit(EXIT_FAILURE);
 	}
 
