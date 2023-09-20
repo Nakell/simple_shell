@@ -54,7 +54,7 @@ void shell(void)
 void execute_command(char *command)
 {
 	pid_t pid = fork();
-	int status;
+	int status, i;
 	char *args[MAX_ARGUMENTS + 1];
 
 	if (pid == -1)
@@ -79,6 +79,11 @@ void execute_command(char *command)
 
 		waitpid(pid, &status, 0);
 	}
+	for (i = 0; args[i] != NULL; i++)
+	{
+		free(args[i]);
+	}
+	free(args);
 }
 /**
  * main - main program
