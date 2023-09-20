@@ -10,6 +10,7 @@ void shell(void);
  */
 void shell(void)
 {
+	char *args[MAX_ARGUMENTS + 1];
 	char *command = NULL;
 	char *command_path;
 	ssize_t read;
@@ -37,13 +38,15 @@ void shell(void)
 			command[read - 1] = '\0';
 		}
 
+		parse_arg(command, args);
+
 
 		/* sets path for command */
 		command_path = find_command_in_path(command, getenv("PATH"));
 		if (command_path != NULL)
 		{
 			/*executes the command */
-			execute_command(command_path);
+			execute_command(command_path, args);
 			free(command_path);
 		}
 			else
@@ -74,12 +77,11 @@ void execute_command(char *command, char **args)
 	else if (pid == 0)
 	{
 		/* Child process*/
-		/* parse_arg(command, args); */
 		execve(command, args, environ);
 
 
 		/* Execution failed, print error message */
-		fprintf(stderr, "Command '%s' not found\n", command);
+		fprintf(stderr, "Command '%s' not found\n", args[0]);
 		exit(EXIT_FAILURE);
 	}
 	else
