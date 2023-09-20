@@ -13,11 +13,14 @@ void shell(void)
 	char command[MAX_COMMAND_LENGTH];
 	char *command_path;
 
+	 /* Set output buffer to line-buffered */
+	setvbuf(stdout, NULL, _IOLBF, 0);
+
 	while (1)
 	{
 		/*  Display prompt */
 		printf("$ ");
-		fflush(stdout);
+
 
 		/* Read command from user */
 		if (fgets(command, sizeof(command), stdin) == NULL)
