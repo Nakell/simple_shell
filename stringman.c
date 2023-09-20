@@ -25,15 +25,17 @@ void _strcopy(char *dest, char *sourc)
 int _strcomp(const char *str1, const char *str2)
 {
 	int index = 0;
+
 	while (str1[index] != '\0' || str2[index] != '\0')
 	{
 		if (str1[index] != str2[index])
 		{
-			return(str1[index] - str2[index]);
+			return (str1[index] - str2[index]);
 		}
 		index++;
 	}
-	return(0);
+	return (0);
+
 }
 
 /**

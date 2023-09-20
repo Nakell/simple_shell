@@ -26,7 +26,6 @@ int execute_built(char **command_args, char *user_input)
 			}
 			return (1);
 		}
-		
 	}
 	return (0);
 }
