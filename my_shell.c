@@ -35,10 +35,12 @@ void shell(void)
 		/* Remove newline character */
 		if (read > 0 && command[read - 1] == '\n')
 		{
-			command[read - 1] = '\0';
+			command[read - 1]  = '\0';
 		}
 
+		/* Parse the command and find its path */
 		parse_arg(command, args);
+
 
 		/* sets path for command */
 		command_path = find_command_in_path(args[0], getenv("PATH"));
@@ -50,7 +52,7 @@ void shell(void)
 		}
 			else
 			{
-				printf("Command not found: %s\n", command);
+				printf("Command not found: %s\n", args[0]);
 			}
 			free(command);
 	}

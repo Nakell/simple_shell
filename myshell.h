@@ -28,11 +28,11 @@ int execute_built(char **command_args, char *user_input);
 void custom_flush(void);
 int _strlen(const char *strn);
 char *_strdup(const char *src);
-
+void _strcopy(char *dest, char *sourc);
+void handle_command(char **args);
+int _strcomp(const char *str1, const char *str2);
 
 char **tokenize_string(char *input_string, ssize_t input_length);
-void _strcopy(char *dest, char *sourc);
-int _strcomp(const char *str1, const char *str2);
 void environ_builtin(void);
 void exit_shell(char **command_token, char *user_input);
 #endif
