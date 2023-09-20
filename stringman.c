@@ -43,7 +43,7 @@ int _strcomp(const char *str1, const char *str2)
  * @src: the string to be duplicated
  * Return: a pointer to the duplicated string
  */
-char *_strdup(char *src)
+char *_strdup(const char *src)
 {
 	char *duplic;
 	int i, length;

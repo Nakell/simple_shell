@@ -1,7 +1,7 @@
 #include "myshell.h"
 
 
-void execute_command(char *command);
+void execute_command(char *command, char **args);
 void shell(void);
 
 /**
@@ -58,12 +58,12 @@ void shell(void)
 /**
  *  execute_command - Executes a command using the execve function.
  * @command: The command to be executed.
- */
-void execute_command(char *command)
+ * @args: The array of arguments for the command
+*/
+void execute_command(char *command, char **args)
 {
 	pid_t pid = fork();
 	int status;
-	 char *args[MAX_ARGUMENTS + 1];
 
 	if (pid == -1)
 	{
@@ -74,8 +74,8 @@ void execute_command(char *command)
 	else if (pid == 0)
 	{
 		/* Child process*/
-		parse_arg(command, args);
-		execvp(args[0], args);
+		/* parse_arg(command, args); */
+		execve(command, args, environ);
 
 
 		/* Execution failed, print error message */

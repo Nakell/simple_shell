@@ -9,7 +9,7 @@
  */
 char *construct_command_path(const char *command, const char *directory)
 {
-	char *command_path = malloc(strlen(directory) + strlen(command) + 2);
+	char *command_path = malloc(_strlen(directory) + strlen(command) + 2);
 
 	if (command_path == NULL)
 	{
@@ -31,7 +31,7 @@ char *construct_command_path(const char *command, const char *directory)
  */
 char *find_command_in_path(const char *command, const char *path)
 {
-	char *path_copy = strdup(path);
+	char *path_copy = _strdup(path);
 	char *directory = strtok(path_copy, ":");
 	char *command_path  = NULL;
 

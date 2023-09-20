@@ -5,7 +5,7 @@
  * @strn: The input string
  * Return: The length of the string
  */
-int _strlen(char *strn)
+int _strlen(const char *strn)
 {
 	int length = 0;
 
