@@ -10,24 +10,32 @@ void shell(void);
  */
 void shell(void)
 {
-	char command[MAX_COMMAND_LENGTH];
+	char *command = NULL;
 	char *command_path;
-	size_t command_size = 0;
+	ssize_t read;
+	size_t len = 0;
 
 
 	while (1)
 	{
 		/*  Display prompt */
 		printf("$ ");
+		fflush(stdout);
 
 		/* Read command from user */
-		if (getline(&command, &command_size, stdin) == NULL)
+		read = getline(&command, &len, stdin);
+		if (read == -1)
 		{
-			break;
+			perror("getline");
+			exit(EXIT_FAILURE);
 		}
 
+
 		/* Remove newline character */
-		command[strcspn(command, "\n")] = '\0';
+		if (read > 0 && command[read - 1] == '\n')
+		{
+			command[read - 1] = '\0';
+		}
 
 
 		/* sets path for command */
@@ -42,7 +50,7 @@ void shell(void)
 			{
 				printf("Command not found: %s\n", command);
 			}
-			fflush(stdin);
+			free(command);
 	}
 	free(command);
 }
