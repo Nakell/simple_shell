@@ -12,6 +12,7 @@ void shell(void)
 {
 	char command[MAX_COMMAND_LENGTH];
 	char *command_path;
+	size_t command_size = 0;
 
 
 	while (1)
@@ -20,7 +21,7 @@ void shell(void)
 		printf("$ ");
 
 		/* Read command from user */
-		if (fgets(command, sizeof(command), stdin) == NULL)
+		if (getline(&command, &command_size, stdin) == NULL)
 		{
 			break;
 		}
@@ -41,7 +42,9 @@ void shell(void)
 			{
 				printf("Command not found: %s\n", command);
 			}
+			fflush(stdin);
 	}
+	free(command);
 }
 
 /**
