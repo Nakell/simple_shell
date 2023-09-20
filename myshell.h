@@ -17,6 +17,7 @@ extern char **environ;
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
 #define NUM_BUILTIN_COMMANDS  3
+#define BUFFER_SIZE 1024
 
 int _putchar(char c);
 void execute_command(char *command);
@@ -25,6 +26,8 @@ char *find_command_in_path(const char *command, const char *path);
 char *construct_command_path(const char *command, const char *directory);
 void parse_arg(char *command, char **args);
 int execute_built(char **command_args, char *user_input);
+void custom_flush(void);
+
 
 
 
