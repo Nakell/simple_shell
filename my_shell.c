@@ -12,8 +12,14 @@ void shell(void)
 {
 	char *command = NULL;
 	char *command_path;
+<<<<<<< HEAD
 	ssize_t read;
 	size_t len = 0;
+=======
+	size_t command_size = 0;
+	ssize_t read_status;
+
+>>>>>>> bd53f2600fb313d9ef74315da78a05442f9449d2
 
 
 	while (1)
@@ -23,8 +29,13 @@ void shell(void)
 		fflush(stdout);
 
 		/* Read command from user */
+<<<<<<< HEAD
 		read = getline(&command, &len, stdin);
 		if (read == -1)
+=======
+		read_status = getline(&command, &command_size, stdin);
+		if (read_status == -1)
+>>>>>>> bd53f2600fb313d9ef74315da78a05442f9449d2
 		{
 			perror("getline");
 			exit(EXIT_FAILURE);
