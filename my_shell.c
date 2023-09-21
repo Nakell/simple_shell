@@ -20,8 +20,13 @@ void shell(void)
 	while (1)
 	{
 		/*  Display prompt */
-		printf("$ ");
-		fflush(stdout);
+		if (isatty(STDIN_FILENO))
+		{
+			const char *shellprompt = "$ ";
+
+			write(STDOUT_FILENO, shellprompt, _strlen(shellprompt));
+			fflush(stdout);
+		}
 
 		/* Read command from user */
 		read = getline(&command, &len, stdin);
