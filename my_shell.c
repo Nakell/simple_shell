@@ -36,7 +36,7 @@ void shell(void)
 			{
 				if (isatty(STDIN_FILENO))
 					write(STDOUT_FILENO, "\n", 1);
-				free(command);
+
 				exit(EXIT_SUCCESS);
 			}
 			else
@@ -101,6 +101,7 @@ void execute_command(char *command, char **args)
 	}
 	else if (pid == 0)
 	{
+
 		/* Child process*/
 		execve(command, args, environ);
 

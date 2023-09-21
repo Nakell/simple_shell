@@ -12,6 +12,7 @@ extern char **environ;
 #include <wait.h>
 #include <stddef.h>
 #include <ctype.h>
+#include <signal.h>
 
 
 #define MAX_COMMAND_LENGTH 100
