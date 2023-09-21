@@ -55,7 +55,7 @@ char *find_command_in_path(char *command, const char *path)
 		command_path = construct_command_path(command, directory);
 		if (access(command_path, X_OK) == 0)
 		{
-			free(path_copy);
+
 			return (command_path);
 		}
 		free(command_path);
