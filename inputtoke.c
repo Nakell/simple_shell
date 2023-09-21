@@ -11,9 +11,11 @@ void freeitoken(char **ctokens)
 
 	if (ctokens == NULL)
 		return;
+
 	for (m = 0; ctokens[m] != NULL; m++)
 	{
-		free(ctokens[m]);
+		if (ctokens[m] != NULL)
+			free(ctokens[m]);
 	}
 	free(ctokens);
 }
@@ -46,7 +48,7 @@ char **itoken(char *istring, ssize_t Bread)
 		{
 			for (n = 0; n < m; n++)
 			{
-				free(ctokens[m]);
+				free(ctokens[n]);
 			}
 			free(ctokens);
 			return (NULL);
