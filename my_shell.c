@@ -2,7 +2,6 @@
 
 void execute_command(char *command, char **args);
 void shell(void);
-void parse_arg(char *command, char **args);
 char *find_command_in_path(char *command, const char *path);
 
 /**
@@ -67,12 +66,14 @@ void shell(void)
 			/*executes the command */
 			execute_command(command_path, tokeargs);
 			free(command_path);
+			command_path = NULL;
 		}
 		else
 		{
 			printf("Command not found: %s\n", tokeargs[0]);
 		}
 		freeitoken(tokeargs);
+		tokeargs = NULL;
 		}
 		else
 		{
@@ -80,6 +81,7 @@ void shell(void)
 			exit(EXIT_FAILURE);
 		}
 		free(command);
+		command = NULL;
 	}
 }
 
