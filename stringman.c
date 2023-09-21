@@ -10,11 +10,10 @@ char *_strcopy(char *dest, const char *sourc)
 {
 	int index;
 
-	for (index = 0; sourc[index] != '\0'; index++)
+	for (index = 0; index <= _strlen(sourc); index++)
 	{
 		dest[index] = sourc[index];
 	}
-	dest[index] = '\0';
 	return (dest);
 }
 
@@ -28,7 +27,7 @@ int _strcomp(const char *str1, const char *str2)
 {
 	int index = 0;
 
-	while (str1[index] != '\0' || str2[index] != '\0')
+	for (; str1[index] != '\0' && str2[index] != '\0';)
 	{
 		if (str1[index] != str2[index])
 		{
@@ -48,18 +47,21 @@ int _strcomp(const char *str1, const char *str2)
 char *_strdup(const char *src)
 {
 	char *duplic;
-	int i, length;
+	int i, l;
 
 	if (src == NULL)
 		return (NULL);
 
-	length = _strlen(src);
-	duplic = malloc(sizeof(char) * (length + 1));
+	l = _strlen(src);
+
+	duplic = malloc(sizeof(char) * (l + 1));
 	if (!duplic)
 		return (NULL);
 
 	for (i = 0; src[i] != '\0'; i++)
+	{
 		duplic[i] = src[i];
+	}
 	duplic[i] = '\0';
 
 
