@@ -32,8 +32,18 @@ void shell(void)
 		read = getline(&command, &len, stdin);
 		if (read  == -1)
 		{
-			perror("getline");
-			exit(EXIT_FAILURE);
+			if (feof(stdin))
+			{
+				if (isatty(STDIN_FILENO))
+					write(STDOUT_FILENO, "\n", 1);
+				free(command);
+				exit(EXIT_SUCCESS);
+			}
+			else
+			{
+				perror("getline");
+				exit(EXIT_FAILURE);
+			}
 		}
 
 		/* Remove newline character */
