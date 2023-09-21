@@ -2,6 +2,8 @@
 
 void execute_command(char *command, char **args);
 void shell(void);
+void parse_arg(char *command, char **args);
+char *find_command_in_path(char *command, const char *path);
 
 /**
  * shell - excutes command from user
@@ -9,12 +11,11 @@ void shell(void);
  */
 void shell(void)
 {
-	char *args[MAX_ARGUMENTS + 1];
 	char *command = NULL;
 	char *command_path;
 	ssize_t read;
 	size_t len = 0;
-
+	char **tokeargs;
 
 	while (1)
 	{
@@ -39,24 +40,28 @@ void shell(void)
 		}
 
 		/* Parse the command and find its path */
-		parse_arg(command, args);
-
-
-		/* sets path for command */
-		command_path = find_command_in_path(args[0], getenv("PATH"));
+		tokeargs = itoken(command, read);
+		if (tokeargs != NULL)
+		{
+			command_path = find_command_in_path(tokeargs[0], getenv("PATH"));
 		if (command_path != NULL)
 		{
 			/*executes the command */
-			execute_command(command_path, args);
+			execute_command(command_path, tokeargs);
 			free(command_path);
 		}
-			else
-			{
-				printf("Command not found: %s\n", args[0]);
-			}
-			free(command);
+		else
+		{
+			printf("Command not found: %s\n", tokeargs[0]);
+		}
+		freeitoken(tokeargs);
+		}
+		else
+		{
+			fprintf(stderr, "token error\n");
+		}
+		free(command);
 	}
-	free(command);
 }
 
 /**

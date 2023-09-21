@@ -4,8 +4,9 @@
  * _strcopy - function that copies one string to another
  * @dest: the destination string
  * @sourc: the source string to be copied from
+ * Return: destination
  */
-void _strcopy(char *dest, char *sourc)
+char *_strcopy(char *dest, char *sourc)
 {
 	int index;
 
@@ -13,7 +14,7 @@ void _strcopy(char *dest, char *sourc)
 	{
 		dest[index] = sourc[index];
 	}
-	dest[index] = '\0';
+	return(dest);
 }
 
 /**

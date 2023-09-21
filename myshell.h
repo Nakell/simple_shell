@@ -21,18 +21,19 @@ extern char **environ;
 int _putchar(char c);
 void execute_command(char *command, char **args);
 void shell(void);
-char *find_command_in_path(const char *command, const char *path);
+char *find_command_in_path(char *command, const char *path);
 char *construct_command_path(const char *command, const char *directory);
-void parse_arg(char *command, char **args);
 int execute_built(char **command_args, char *user_input);
 void custom_flush(void);
 int _strlen(const char *strn);
 char *_strdup(const char *src);
-void _strcopy(char *dest, char *sourc);
+char *_strcopy(char *dest, char *sourc);
 void handle_command(char **args);
 int _strcomp(const char *str1, const char *str2);
 
 char **tokenize_string(char *input_string, ssize_t input_length);
 void environ_builtin(void);
 void exit_shell(char **command_token, char *user_input);
-#endif
+char **itoken(char *istring, ssize_t Bread);
+void freeitoken(char **ctokens);
+#endif /* MYSHELL_H */

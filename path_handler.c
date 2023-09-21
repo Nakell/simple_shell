@@ -29,7 +29,7 @@ char *construct_command_path(const char *command, const char *directory)
  *
  * Return: dynamically allocated str containing full path to cmd.
  */
-char *find_command_in_path(const char *command, const char *path)
+char *find_command_in_path(char *command, const char *path)
 {
 	char *path_copy = _strdup(path);
 	char *directory = strtok(path_copy, ":");
