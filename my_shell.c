@@ -33,7 +33,6 @@ void shell(void)
 		if (read  == -1)
 		{
 			perror("getline");
-			free(command);
 			exit(EXIT_FAILURE);
 		}
 
@@ -46,7 +45,6 @@ void shell(void)
 
 		if (_strcomp(command, "exit") == 0)
 		{
-			free(command);
 			exit_shell();
 		}
 		/* Parse the command and find its path */
@@ -69,6 +67,7 @@ void shell(void)
 		else
 		{
 			fprintf(stderr, "token error\n");
+			exit(EXIT_FAILURE);
 		}
 		free(command);
 	}
