@@ -6,15 +6,16 @@
  * @sourc: the source string to be copied from
  * Return: destination
  */
-char *_strcopy(char *dest, char *sourc)
+char *_strcopy(char *dest, const char *sourc)
 {
 	int index;
 
-	for (index = 0; index <= _strlen(sourc); index++)
+	for (index = 0; sourc[index] != '\0'; index++)
 	{
 		dest[index] = sourc[index];
 	}
-	return(dest);
+	dest[index] = '\0';
+	return (dest);
 }
 
 /**
@@ -51,12 +52,16 @@ char *_strdup(const char *src)
 
 	if (src == NULL)
 		return (NULL);
+
 	length = _strlen(src);
 	duplic = malloc(sizeof(char) * (length + 1));
 	if (!duplic)
 		return (NULL);
+
 	for (i = 0; src[i] != '\0'; i++)
 		duplic[i] = src[i];
 	duplic[i] = '\0';
+
+
 	return (duplic);
 }

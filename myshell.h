@@ -27,9 +27,10 @@ int execute_built(char **command_args);
 void custom_flush(void);
 int _strlen(const char *strn);
 char *_strdup(const char *src);
-char *_strcopy(char *dest, char *sourc);
-void handle_command(char **args);
+char *_strcopy(char *dest, const char *sourc);
+void handle_command(char *command, char **args);
 int _strcomp(const char *str1, const char *str2);
+
 
 char **tokenize_string(char *input_string, ssize_t input_length);
 void environ_builtin(void);

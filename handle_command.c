@@ -2,10 +2,16 @@
 
 /**
  * handle_command - handles args
+ * @command: The command to execute.
  *@args: argments to be passed
  */
 
-void handle_command(char **args)
+void handle_command(char *command, char **args)
 {
-	execute_command(args[0], args);
+	if (command == NULL)
+	{
+		fprintf(stderr, "Invalid command\n");
+		return;
+	}
+	execute_command(command, args);
 }
