@@ -32,13 +32,18 @@ void shell(void)
 			exit(EXIT_FAILURE);
 		}
 
-
 		/* Remove newline character */
 		if (read > 0 && command[read - 1] == '\n')
 		{
 			command[read - 1]  = '\0';
 		}
 
+
+		if (_strcomp(command, "exit") == 0)
+		{
+			free(command);
+			exit_shell();
+		}
 		/* Parse the command and find its path */
 		tokeargs = itoken(command, read);
 		if (tokeargs != NULL)

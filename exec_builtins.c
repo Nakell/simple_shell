@@ -3,10 +3,9 @@
 /**
  * execute_built - this fucntions executes builtins commands
  * @command_args: tokenized command arguments
- * @user_input: input read from stdin
  * Return:1 if a builtin command is executed, 0 otherwise
  */
-int execute_built(char **command_args, char *user_input)
+int execute_built(char **command_args)
 {
 	char *builtin_command[NUM_BUILTIN_COMMANDS] = {"env", "exit"};
 	int command_index;
@@ -22,7 +21,7 @@ int execute_built(char **command_args, char *user_input)
 			else if (command_index == 1)
 			{
 				printf("exit command detected.\n");
-				exit_shell(command_args, user_input);
+				exit_shell();
 			}
 			return (1);
 		}
