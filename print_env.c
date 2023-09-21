@@ -5,13 +5,13 @@
  */
 void environ_builtin(void)
 {
-	int env_index = 0;
-	char **env_var = environ;
-
-	while (env_var[env_index] != NULL)
+	int i = 0, env_index = 0;
+	
+	while (environ[i])
 	{
-		write(STDOUT_FILENO, (const void *) env_var[env_index],
-				_strlen(env_var[env_index]));
+		env_index = _strlen(environ[i]);
+
+		write(STDOUT_FILENO, environ[i], env_index);
 		write(STDOUT_FILENO, "\n", 1);
 		env_index++;
 	}
