@@ -1,7 +1,7 @@
 0X16 Simple Shell.
 
 Description.
-This project is an implementaton the shell created as a Milestone Project for the C code at ALX africa Software engineering
+This project is an implementaton the shell created as a Milestone Project for the C code at ALX africa Software engineering.
 The gates of shell is a project in the first trimester, that helps student to understand the advanced concepts behind the shell program include process, system call, bit manipulation, file management and error handling
 Task 0 Betty would be proud Write a beautiful code that passes the Betty checks
 Task 1
