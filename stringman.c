@@ -56,7 +56,10 @@ char *_strdup(const char *src)
 
 	duplic = malloc(sizeof(char) * (l + 1));
 	if (!duplic)
-		return (NULL);
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
 
 	for (i = 0; src[i] != '\0'; i++)
 	{

@@ -6,7 +6,7 @@
 void environ_builtin(void)
 {
 	int i = 0, env_index = 0;
-	
+
 	while (environ[i])
 	{
 		env_index = _strlen(environ[i]);
