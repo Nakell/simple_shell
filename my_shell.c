@@ -35,7 +35,7 @@ void shell(void)
 			{
 				if (isatty(STDIN_FILENO))
 					write(STDOUT_FILENO, "\n", 1);
-
+				free(command);
 				exit(EXIT_SUCCESS);
 			}
 			else
@@ -54,7 +54,7 @@ void shell(void)
 
 		if (_strcomp(command, "exit") == 0)
 		{
-			exit_shell();
+			exit_shell(command);
 		}
 		/* Parse the command and find its path */
 		tokeargs = itoken(command, read);
