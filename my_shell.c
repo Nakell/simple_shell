@@ -83,6 +83,7 @@ void shell(void)
 		free(command);
 		command = NULL;
 	}
+	free(command);
 }
 
 /**
