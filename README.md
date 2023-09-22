@@ -1,4 +1,4 @@
-0X16 Simple Shell
+0X16 Simple Shell.
 
 Description
 This project is an implementaton the shell created as a Milestone Project for the C code at ALX africa Software engineering
